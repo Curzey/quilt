@@ -55,17 +55,15 @@ export function quiltPackage({jestEnv = 'jsdom', useReact = true} = {}) {
       hooks.configure.hook(hooks => {
         hooks.jestEnvironment?.hook(() => jestEnv);
 
-        hooks.jestConfig?.hook(config => ({
-          ...config,
-          transform: {
-            ...config.transform,
-            '\\.(gql|graphql)$': 'jest-transform-graphql',
-          },
-          watchPathIgnorePatterns: [
-            ...config.watchPathIgnorePatterns,
-            '<rootDir>/.*/tests?/.*fixtures',
-          ],
+        hooks.jestTransforms?.hook(transforms => ({
+          ...transforms,
+          '\\.(gql|graphql)$': 'jest-transform-graphql',
         }));
+
+        hooks.jestWatchIgnore?.hook(patterns => [
+          ...patterns,
+          '<rootDir>/.*/tests?/.*fixtures',
+        ]);
 
         hooks.babelConfig?.hook(addLegacyDecoratorSupport);
       });
