@@ -32,8 +32,7 @@
     "pretest": "yarn build",
     "test": "yarn _test",
     "test:ci": "yarn _test --coverage",
-    "tophat": "tophat",
-    "type-check": "sk type-check"
+    "tophat": "tophat"
   },
   "resolutions": {
     "@types/react": "16.9.19",

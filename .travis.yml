@@ -16,7 +16,6 @@ matrix:
       name: 'Node - build, type-check, and end-to-end tests'
       script:
         - yarn build
-        - yarn type-check
         - yarn test:ci "(address|react-server)"
       cache:
         directories:
