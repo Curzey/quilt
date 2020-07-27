@@ -10,24 +10,7 @@ import {typescript} from '@sewing-kit/plugin-typescript';
 import {buildFlexibleOutputs} from '@sewing-kit/plugin-package-flexible-outputs';
 import {} from '@sewing-kit/plugin-jest';
 
-function addLegacyDecoratorSupport(config) {
-  return {
-    presets: config.presets,
-    plugins: (config.plugins || []).map(plugin => {
-      const pluginName = Array.isArray(plugin) ? plugin[0] : plugin;
-
-      if (pluginName.includes('@babel/plugin-proposal-decorators')) {
-        return [pluginName, {legacy: true}];
-      } else if (
-        pluginName.includes('@babel/plugin-proposal-class-properties')
-      ) {
-        return [pluginName, {loose: true}];
-      } else {
-        return plugin;
-      }
-    }),
-  };
-}
+import {addLegacyDecoratorSupport, addReactPreset} from './plugins';
 
 export function quiltPackage({jestEnv = 'jsdom', useReact = false} = {}) {
   return createComposedProjectPlugin<Package>('Quilt.Package', [
@@ -65,7 +48,10 @@ export function quiltPackage({jestEnv = 'jsdom', useReact = false} = {}) {
           '<rootDir>/.*/tests?/.*fixtures',
         ]);
 
-        hooks.babelConfig?.hook(addLegacyDecoratorSupport);
+        hooks.babelConfig?.hook(config =>
+          // For all our package tests, we import from react-testing (see tests/setup/test.ts)
+          addReactPreset(addLegacyDecoratorSupport(config)),
+        );
       });
     }),
   ]);
