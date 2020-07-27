@@ -29,7 +29,7 @@ function addLegacyDecoratorSupport(config) {
   };
 }
 
-export function quiltPackage({jestEnv = 'jsdom', useReact = true} = {}) {
+export function quiltPackage({jestEnv = 'jsdom', useReact = false} = {}) {
   return createComposedProjectPlugin<Package>('Quilt.Package', [
     javascript(),
     typescript(),

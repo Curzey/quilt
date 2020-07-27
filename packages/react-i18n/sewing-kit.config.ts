@@ -13,5 +13,5 @@ export default createPackage(pkg => {
     root: './src/babel-plugin/generate-index',
   });
   pkg.entry({name: 'babel', root: './src/babel-plugin'});
-  pkg.use(quiltPackage());
+  pkg.use(quiltPackage({useReact: true}));
 });
