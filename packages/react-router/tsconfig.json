@@ -6,7 +6,7 @@
     "baseUrl": "src"
   },
   "include": [
-    "../../config/typescript/*.ts",
+    "../../config/typescript/*.d.ts",
     "./src/**/*.ts",
     "./src/**/*.tsx"
   ],
