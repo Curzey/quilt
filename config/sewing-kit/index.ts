@@ -17,10 +17,7 @@ export function quiltPackage({jestEnv = 'jsdom', useReact = false} = {}) {
     javascript(),
     typescript(),
     useReact && react(),
-    buildFlexibleOutputs({
-      esnext: false,
-      esmodules: false,
-    }),
+    buildFlexibleOutputs(),
     createProjectBuildPlugin('Quilt.PackageBuild', ({hooks}) => {
       hooks.target.hook(({hooks}) => {
         hooks.configure.hook(hooks => {
