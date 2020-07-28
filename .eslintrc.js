@@ -1,21 +1,14 @@
 module.exports = {
   extends: [
-    'plugin:@sewing-kit/typescript',
-    'plugin:@sewing-kit/react',
-    'plugin:@sewing-kit/prettier',
-    'plugin:@sewing-kit/jest',
+    'plugin:@shopify/typescript',
+    'plugin:@shopify/typescript-type-checking',
+    'plugin:@shopify/react',
+    'plugin:@shopify/jest',
+    'plugin:@shopify/prettier',
   ],
-  ignorePatterns: [
-    'node_modules/',
-    'packages/*/build/',
-    'packages/*/*.d.ts',
-    'packages/*/*.js',
-    '!packages/*/.eslintrc.js',
-    'packages/*/*.mjs',
-    'packages/*/*.node',
-    'packages/*/*.esnext',
-    'packages/**/tests/fixtures/',
-  ],
+  parserOptions: {
+    project: ['./tsconfig.eslint.json'],
+  },
   rules: {
     'jest/valid-expect-in-promise': 'off',
     'import/extensions': 'off',
@@ -26,6 +19,8 @@ module.exports = {
     'callback-return': 'off',
     'func-style': 'off',
     'react/display-name': 'off',
+    '@shopify/restrict-full-import': ['error', 'lodash'],
+    '@shopify/jsx-no-hardcoded-content': 'off',
     // reports false positives with React's useRef hook
     'require-atomic-updates': 'off',
     '@typescript-eslint/no-unnecessary-type-arguments': 'off',
@@ -35,20 +30,7 @@ module.exports = {
     '@typescript-eslint/unbound-method': 'off',
     '@typescript-eslint/no-misused-promises': 'off',
     '@typescript-eslint/await-thenable': 'off',
-    '@typescript-eslint/no-misused-promises': 'off',
     'import/no-extraneous-dependencies': 'error',
-    // @shopify/typescript/prefer-pascal-case-enums
-    // @shopify/react-prefer-private-members
-    // @shopify/strict-component-boundaries
-    // @shopify/jsx-prefer-fragment-wrappers
-    // @sewing-kit overrides
-    '@typescript-eslint/array-type': 'off',
-    'react/jsx-no-useless-fragment': 'off',
-    'react/function-component-definition': 'off',
-    'import/order': 'off',
-    'default-param-last': 'off',
-    'jest/no-deprecated-functions': 'off',
-    'no-process-env': 'error',
   },
   overrides: [
     {

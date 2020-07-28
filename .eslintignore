@@ -1,13 +1,8 @@
 node_modules
-**/node_modules/*
-
 coverage
-
-**/templates/*
-
-**/dummy/**
-
-**/packages/*/build/**
+templates
+gems/**/dummy
+packages/*/build/**
 **/*.d.ts
 **/*.js
 **/*.esnext

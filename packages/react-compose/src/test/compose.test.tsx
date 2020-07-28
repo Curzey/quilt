@@ -115,6 +115,7 @@ interface Props {
 type ComposedProps = FooProps & BarProps & Props;
 
 class ClassicalComponent extends React.Component<ComposedProps, never> {
+  // eslint-disable-next-line @shopify/react-prefer-private-members
   static someStatic = 'some static';
 
   render() {
